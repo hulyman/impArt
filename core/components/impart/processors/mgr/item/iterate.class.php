@@ -1,16 +1,19 @@
 <?php
+
 /**
  * Send an Queue
  */
-class impArtItemIterateProcessor extends modProcessor {
+class impArtItemIterateProcessor extends modProcessor
+{
     public $objectType = 'impArticle';
-	public $classKey = 'impArticle';
+    public $classKey = 'impArticle';
 
-	public function process() {
+    public function process()
+    {
         $c = $this->modx->newQuery($this->classKey, array(
-                'imported' => 0,
-                'alias_dublicate' => 0
-            ));
+            'imported' => 0,
+            'alias_dublicate' => 0
+        ));
         $c->limit(10);
         $articles = $this->modx->getCollection($this->classKey, $c);
         foreach ($articles as $article) {
@@ -22,7 +25,7 @@ class impArtItemIterateProcessor extends modProcessor {
             $article->save();
         }
         return $this->success();
-	}
+    }
 
 }
 
